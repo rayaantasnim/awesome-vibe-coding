@@ -1,0 +1,193 @@
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        background-color: #030305;
+        color: #f8fafc;
+        font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        text-wrap: balance;
+      }
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .dot-matrix {
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.12) 1px,
+          transparent 1px
+        );
+        background-size: 24px 24px;
+        -webkit-mask-image: radial-gradient(
+          ellipse 85% 75% at 50% 20%,
+          #000 35%,
+          transparent 100%
+        );
+        mask-image: radial-gradient(
+          ellipse 85% 75% at 50% 20%,
+          #000 35%,
+          transparent 100%
+        );
+      }
+
+      @keyframes auroraFloatA {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(48px, 28px, 0) scale(1.06);
+        }
+      }
+      @keyframes auroraFloatB {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(-44px, 36px, 0) scale(1.08);
+        }
+      }
+      @keyframes auroraFloatC {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(28px, -32px, 0) scale(1.05);
+        }
+      }
+      .aurora-blob-a {
+        animation: auroraFloatA 22s ease-in-out infinite;
+        will-change: transform;
+      }
+      .aurora-blob-b {
+        animation: auroraFloatB 26s ease-in-out infinite;
+        will-change: transform;
+      }
+      .aurora-blob-c {
+        animation: auroraFloatC 30s ease-in-out infinite;
+        will-change: transform;
+      }
+
+      /* Smooth CSS Grid Accordion Drawer */
+      .accordion-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 220ms ease;
+      }
+      .accordion-panel[data-open="true"] {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+      .accordion-inner {
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      /* Mouse-Tracking Spotlight Cards + Animated Gradient Border Highlight */
+      .spotlight-card {
+        --mouse-x: -400px;
+        --mouse-y: -400px;
+        position: relative;
+      }
+      .spotlight-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 280ms ease;
+        background: radial-gradient(
+          540px circle at var(--mouse-x) var(--mouse-y),
+          rgba(249, 115, 22, 0.15),
+          rgba(225, 29, 72, 0.08) 45%,
+          transparent 75%
+        );
+        z-index: 1;
+      }
+      .spotlight-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 280ms ease;
+        background: radial-gradient(
+          380px circle at var(--mouse-x) var(--mouse-y),
+          rgba(245, 158, 11, 0.85),
+          rgba(249, 115, 22, 0.65) 45%,
+          rgba(225, 29, 72, 0.38) 75%,
+          transparent 90%
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        z-index: 2;
+      }
+      .spotlight-card:hover::before,
+      .spotlight-card:hover::after,
+      .spotlight-card[data-expanded="true"]::after {
+        opacity: 1;
+      }
+
+      details[open] .faq-chevron {
+        transform: rotate(180deg);
+      }
+
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* 3D Paper-Fold Mobile Menu Perspective */
+      #mobile-nav {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transform-origin: top center;
+        will-change: transform, opacity;
+      }
+      #mobile-nav > div,
+      #mobile-nav a {
+        transform-style: preserve-3d;
+        transform-origin: top center;
+        backface-visibility: hidden;
+      }
+      .gsap-motion-ready {
+        transition-property:
+          color, background-color, border-color, text-decoration-color, fill,
+          stroke, filter !important;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .aurora-blob-a,
+        .aurora-blob-b,
+        .aurora-blob-c {
+          animation: none !important;
+        }
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
