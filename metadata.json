@@ -1,0 +1,6 @@
+{
+  "name": "Awesome Vibe Coding",
+  "description": "A curated directory of AI coding editors, tested system prompts, debugging workflows, and free deployment platforms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
